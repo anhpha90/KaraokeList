@@ -19,7 +19,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageButton;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,7 +31,9 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import vn.com.pqs.adapter.BaiHatAdapter;
@@ -40,13 +43,14 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<BaiHat> dsBaiHatTimKiem;
     private Toolbar toolbar;
     private TabLayout tabLayout;
-    private ViewPager viewPager;
+    public ViewPager viewPager;
     MaterialSearchView searchView;
     ArrayList<BaiHat> dsBaihat;
-    ArrayList<BaiHat> dsYeuthich;
+    public ArrayList<BaiHat> dsYeuthich;
     BaiHatAdapter baiHatAdapter;
-    ArrayList<BaiHat> dsBaihatyt;
-    private int[] tabIcons = {R.drawable.ds,R.drawable.yt,R.drawable.tt
+    public BaiHatAdapter DsAdapter;
+    public BaiHatAdapter YtAdapter;
+          private int[] tabIcons = {R.drawable.ds,R.drawable.yt,R.drawable.tt
      };
     public  static String DATABASE_NAME="Arirang.sqlite";
     String DB_PATH_SUFFIX = "/databases/";
@@ -58,14 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-
+ dsYeuthich = new ArrayList<>();
+          dsBaihat = new ArrayList<>();
          addDatabase();
         addDsBaiHat();
          addDsYeuThich();
        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setIcon(R.drawable.ic_action_voice_search_inverted);
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
 searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
@@ -119,8 +122,7 @@ if(objects.getTenBh().toLowerCase().contains(newText)){dsBaiHatTimKiem.add(objec
     }
 
     public void addDsYeuThich() {
-        dsYeuthich = new ArrayList<>();
-             dsYeuthich.clear();
+         dsYeuthich.clear();
         database = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
         Cursor cursor1 = database.query("ArirangSongList", null, "YEUTHICH=1", null, null, null, null);
         while (cursor1.moveToNext()) {
@@ -143,17 +145,19 @@ if(objects.getTenBh().toLowerCase().contains(newText)){dsBaiHatTimKiem.add(objec
                     baiHat.setTxtLr(lr);
                     baiHat.setThich(blthich);
                      baiHat.setImg(R.drawable.added);
+               dsYeuthich.add(baiHat);
+                }
 
-               dsYeuthich.add(baiHat);}
             }
+
             cursor1.close();
+
             }
-    private void addDsBaiHat() {
-        dsBaihat = new ArrayList<>();
+      private void addDsBaiHat() {
         database = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
         Cursor cursor=database.query("ArirangSongList",null,null,null,null,null,null);
         dsBaihat.clear();
-        while (cursor.moveToNext()) {
+                while (cursor.moveToNext()) {
             String mabh = cursor.getString(0);
             String tenbh = cursor.getString(1);
             String casi = cursor.getString(3);
@@ -174,11 +178,12 @@ if(objects.getTenBh().toLowerCase().contains(newText)){dsBaiHatTimKiem.add(objec
             if(blthich==true){baiHat.setImg(R.drawable.added);}
             if(blthich==false){baiHat.setImg(R.drawable.addfav);}
             dsBaihat.add(baiHat);
+
         }
         cursor.close();
 
     }
-    private void addDatabase() {
+   private void addDatabase() {
         File dbFile = getDatabasePath(DATABASE_NAME);
         if (!dbFile.exists())
         {
@@ -245,7 +250,7 @@ if(objects.getTenBh().toLowerCase().contains(newText)){dsBaiHatTimKiem.add(objec
         adapter.addFrag(new DanhSach(), "  ZANHSÁCH");
         adapter.addFrag(new YeuThich(), "  YÊUTHÍCH");
         adapter.addFrag(new LienHe(), "  LIÊNHỆ");
-viewPager.setOffscreenPageLimit(0);
+
          viewPager.setAdapter(adapter);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -276,11 +281,28 @@ viewPager.setOffscreenPageLimit(0);
             mFragmentTitleList.add(title);
         }
 
-        @Override
+         @Override
         public CharSequence getPageTitle(int position) {
             return null;
             //return mFragmentTitleList.get(position);
         }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+   switch (position){
+       case 0:
+
+           break;
+       case 1:
+
+           break;
+       case 2:
+
+           break;
+   }
+            return super.instantiateItem(container, position);
+        }
+
     }
 
 

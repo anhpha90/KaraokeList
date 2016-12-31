@@ -15,7 +15,7 @@ import vn.com.pqs.simplekaraokelist.R;
 
 
 public class YeuThich extends Fragment{
-    BaiHatAdapter YtAdapter;
+
     public YeuThich() {
         // Required empty public constructor
     }
@@ -34,11 +34,9 @@ public class YeuThich extends Fragment{
         ListView lvdanhsach = (ListView) view.findViewById(R.id.lvyeuthich);
         MainActivity main1 = (MainActivity) getActivity();
 
-        YtAdapter = new BaiHatAdapter(getActivity(),R.layout.items,main1.dsYeuthich);
-        YtAdapter.notifyDataSetChanged();
-        lvdanhsach.setAdapter(YtAdapter);
-
-
+        main1.YtAdapter = new BaiHatAdapter(getActivity(),R.layout.items,main1.dsYeuthich);
+        main1.YtAdapter.notifyDataSetChanged();
+        lvdanhsach.setAdapter(main1.YtAdapter);
         return view;
     }
 

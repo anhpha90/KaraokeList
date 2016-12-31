@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="50325"
+            android:id="@+id/ms"
+            android:textSize="23dp"
+            android:layout_gravity="center"
+            android:textColor="#e710e3"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anh Không Muốn Bất Công Với Em"
+            android:id="@+id/bh"
+            android:layout_gravity="left"
+            android:textSize="17dp"
+            android:textColor="#525aef"
+            android:layout_margin="1dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cai Sĩ: Ưng Hoàng Phúc"
+            android:id="@+id/cs"
+            android:textColor="#050505" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lời: Điều em không muốn nay..."
+            android:id="@+id/lr"
+            android:textStyle="italic"
+            android:textColor="#554f4f" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton"
+            android:background="@null"
+            android:src="@drawable/addfav"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+</LinearLayout>

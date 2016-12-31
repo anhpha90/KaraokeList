@@ -14,9 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import vn.com.pqs.model.BaiHat;
+import vn.com.pqs.simplekaraokelist.DanhSach;
 import vn.com.pqs.simplekaraokelist.MainActivity;
 import vn.com.pqs.simplekaraokelist.R;
 
@@ -31,6 +33,7 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
     //danh sách nguồn dữ liệu muốn hiển thị lên giao diện
     List<BaiHat> objects;
     MainActivity main2 = (MainActivity) getContext();
+
     public BaiHatAdapter(Activity context, int resource, List<BaiHat> objects) {
         super(context, resource, objects);
         this.context = context;
@@ -53,6 +56,7 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
         txtCs.setText(baiHat.getTxtcs());
         txtLr.setText(baiHat.getTxtLr());
 
+
                imglike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,24 +67,25 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
         return row;
     }
 
-    private void xulythich(BaiHat baiHat) {
+    public void xulythich(BaiHat baiHat) {
         String mschon = baiHat.getTxtms().toString();
+
         if(baiHat.getThich()){
             updateThich(mschon,false);
          baiHat.setThich(false);
          baiHat.setImg(R.drawable.addfav);
-         notifyDataSetChanged();
-                  }else{
+          main2.dsYeuthich.remove(baiHat);
+
+        }else{
             updateThich(mschon,true);
             baiHat.setThich(true);
            baiHat.setImg(R.drawable.added);
-            notifyDataSetChanged();
+            main2.dsYeuthich.add(baiHat);
         }
-        main2.addDsYeuThich();
-        notifyDataSetChanged();
-        notifyAll();
-                    }
+        main2.YtAdapter.notifyDataSetChanged();
+        main2.DsAdapter.notifyDataSetChanged();
 
+        }
     private void updateThich(String ms,boolean thich) {
         ContentValues values = new ContentValues();
         if(thich==false){
@@ -89,11 +94,6 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
             values.put("YEUTHICH","1");
         }
        int ret = main2.database.update("ArirangSongList",values,"MABH='"+ms+"'",null);
-        notifyDataSetChanged();
-    if(ret==0){
-        Toast.makeText(context,"false",Toast.LENGTH_SHORT).show();
-    }else{
-        Toast.makeText(context,"true",Toast.LENGTH_SHORT).show();
-    }
-    }
+
+       }
 }

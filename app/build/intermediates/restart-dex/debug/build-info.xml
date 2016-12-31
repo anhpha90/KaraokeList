@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="armeabi-v7a,armeabi"
+    api-level="19"
+    density="xxhdpi"
+    format="7"
+    timestamp="108817279817394"
+    token="7585416781613219798" >
+
+    <task
+        name="javac"
+        duration="341" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="35" />
+    <task
+        name="verifier"
+        duration="4" />
+
+    <artifact
+        location="C:\Users\long\Downloads\SimpleKaraokeList\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
+
+    <build timestamp="108817279817394" >
+        <artifact
+            location="C:\Users\long\Downloads\SimpleKaraokeList\app\build\outputs\apk\app-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>

@@ -14,7 +14,7 @@ import vn.com.pqs.adapter.BaiHatAdapter;
 import vn.com.pqs.model.BaiHat;
 
 public class DanhSach extends Fragment {
-    BaiHatAdapter DsAdapter;
+
         public DanhSach() {
         // Required empty public constructor
     }
@@ -32,9 +32,10 @@ public class DanhSach extends Fragment {
          View view =  inflater.inflate(R.layout.danhsach, container, false);
         ListView lvdanhsach = (ListView) view.findViewById(R.id.lvdanhsach);
         MainActivity main1 = (MainActivity) getActivity();
-        DsAdapter = new BaiHatAdapter(getActivity(),R.layout.items,main1.dsBaihat);
-        DsAdapter.notifyDataSetChanged();
-        lvdanhsach.setAdapter(DsAdapter);
+        main1.DsAdapter = new BaiHatAdapter(getActivity(),R.layout.items,main1.dsBaihat);
+        main1.DsAdapter.notifyDataSetChanged();
+
+        lvdanhsach.setAdapter(main1.DsAdapter);
 
         return view;
     }
