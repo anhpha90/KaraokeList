@@ -21,6 +21,7 @@ import vn.com.pqs.model.BaiHat;
 import vn.com.pqs.simplekaraokelist.DanhSach;
 import vn.com.pqs.simplekaraokelist.MainActivity;
 import vn.com.pqs.simplekaraokelist.R;
+import vn.com.pqs.simplekaraokelist.YeuThich;
 
 /**
  * Created by long on 03/12/2016.
@@ -33,7 +34,6 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
     //danh sách nguồn dữ liệu muốn hiển thị lên giao diện
     List<BaiHat> objects;
     MainActivity main2 = (MainActivity) getContext();
-
     public BaiHatAdapter(Activity context, int resource, List<BaiHat> objects) {
         super(context, resource, objects);
         this.context = context;
@@ -42,7 +42,7 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater=this.context.getLayoutInflater();
         View row=inflater.inflate(this.resource, null);
         TextView txtMs = (TextView) row.findViewById(R.id.ms);
@@ -60,33 +60,39 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
                imglike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               xulythich(baiHat);
+               xulythich(baiHat,position);
             }
         });
         imglike.setImageResource(baiHat.getImg());
         return row;
     }
 
-    public void xulythich(BaiHat baiHat) {
+    public void xulythich(BaiHat baiHat, int pos) {
         String mschon = baiHat.getTxtms().toString();
 
         if(baiHat.getThich()){
-            updateThich(mschon,false);
+
+
+         updateThich(mschon,false);
          baiHat.setThich(false);
          baiHat.setImg(R.drawable.addfav);
-          main2.dsYeuthich.remove(baiHat);
+            this.objects.set(pos,baiHat);
+            notifyDataSetChanged();
+            main2.dsYeuthich.remove(baiHat);
 
         }else{
             updateThich(mschon,true);
             baiHat.setThich(true);
            baiHat.setImg(R.drawable.added);
             main2.dsYeuthich.add(baiHat);
-        }
-        main2.YtAdapter.notifyDataSetChanged();
-        main2.DsAdapter.notifyDataSetChanged();
 
         }
-    private void updateThich(String ms,boolean thich) {
+
+       main2.YtAdapter.notifyDataSetChanged();
+       main2.DsAdapter.notifyDataSetChanged();
+
+          }
+    public void updateThich(String ms,boolean thich) {
         ContentValues values = new ContentValues();
         if(thich==false){
         values.put("YEUTHICH","0");}

@@ -4,27 +4,27 @@
     api-level="19"
     density="xxhdpi"
     format="7"
-    timestamp="108817279817394"
+    timestamp="2748899329743"
     token="7585416781613219798" >
 
     <task
         name="javac"
-        duration="341" />
+        duration="854" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="35" />
+        duration="388" />
     <task
         name="verifier"
-        duration="4" />
+        duration="172" />
 
     <artifact
         location="C:\Users\long\Downloads\SimpleKaraokeList\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
-    <build timestamp="108817279817394" >
+    <build timestamp="2748899329743" >
         <artifact
             location="C:\Users\long\Downloads\SimpleKaraokeList\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />

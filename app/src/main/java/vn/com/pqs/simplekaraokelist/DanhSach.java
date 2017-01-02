@@ -32,9 +32,8 @@ public class DanhSach extends Fragment {
          View view =  inflater.inflate(R.layout.danhsach, container, false);
         ListView lvdanhsach = (ListView) view.findViewById(R.id.lvdanhsach);
         MainActivity main1 = (MainActivity) getActivity();
-        main1.DsAdapter = new BaiHatAdapter(getActivity(),R.layout.items,main1.dsBaihat);
-        main1.DsAdapter.notifyDataSetChanged();
 
+        main1.DsAdapter.notifyDataSetChanged();
         lvdanhsach.setAdapter(main1.DsAdapter);
 
         return view;

@@ -31,12 +31,11 @@ public class YeuThich extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.yeuthich, container, false);
-        ListView lvdanhsach = (ListView) view.findViewById(R.id.lvyeuthich);
+        ListView lvyeuthich = (ListView) view.findViewById(R.id.lvyeuthich);
         MainActivity main1 = (MainActivity) getActivity();
 
-        main1.YtAdapter = new BaiHatAdapter(getActivity(),R.layout.items,main1.dsYeuthich);
         main1.YtAdapter.notifyDataSetChanged();
-        lvdanhsach.setAdapter(main1.YtAdapter);
+        lvyeuthich.setAdapter(main1.YtAdapter);
         return view;
     }
 

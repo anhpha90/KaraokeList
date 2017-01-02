@@ -1,7 +1,5 @@
 package vn.com.pqs.simplekaraokelist;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -9,17 +7,13 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -31,10 +25,8 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+
 
 import vn.com.pqs.adapter.BaiHatAdapter;
 import vn.com.pqs.model.BaiHat;
@@ -45,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     public ViewPager viewPager;
     MaterialSearchView searchView;
-    ArrayList<BaiHat> dsBaihat;
-    public ArrayList<BaiHat> dsYeuthich;
+    public ArrayList<BaiHat>  dsBaihat = new ArrayList<>();
+    public ArrayList<BaiHat> dsYeuthich = new ArrayList<>();
+    public ArrayList<BaiHat> dsYeuthichtam = new ArrayList<>();
     BaiHatAdapter baiHatAdapter;
     public BaiHatAdapter DsAdapter;
     public BaiHatAdapter YtAdapter;
@@ -62,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
- dsYeuthich = new ArrayList<>();
-          dsBaihat = new ArrayList<>();
+         YtAdapter = new BaiHatAdapter(MainActivity.this,R.layout.items,dsYeuthich);
+         DsAdapter = new BaiHatAdapter(MainActivity.this,R.layout.items,dsBaihat);
          addDatabase();
         addDsBaiHat();
          addDsYeuThich();
@@ -122,7 +115,7 @@ if(objects.getTenBh().toLowerCase().contains(newText)){dsBaiHatTimKiem.add(objec
     }
 
     public void addDsYeuThich() {
-         dsYeuthich.clear();
+         dsYeuthichtam.clear();
         database = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
         Cursor cursor1 = database.query("ArirangSongList", null, "YEUTHICH=1", null, null, null, null);
         while (cursor1.moveToNext()) {
@@ -144,13 +137,15 @@ if(objects.getTenBh().toLowerCase().contains(newText)){dsBaiHatTimKiem.add(objec
                     baiHat.setTxtcs(casi);
                     baiHat.setTxtLr(lr);
                     baiHat.setThich(blthich);
-                     baiHat.setImg(R.drawable.added);
-               dsYeuthich.add(baiHat);
+                   baiHat.setImg(R.drawable.added);
+                    dsYeuthichtam.add(baiHat);
                 }
 
             }
-
+        dsYeuthich.clear();
+        dsYeuthich.addAll(dsYeuthichtam);
             cursor1.close();
+
 
             }
       private void addDsBaiHat() {
@@ -289,7 +284,7 @@ if(objects.getTenBh().toLowerCase().contains(newText)){dsBaiHatTimKiem.add(objec
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-   switch (position){
+        switch (position){
        case 0:
 
            break;
@@ -302,6 +297,7 @@ if(objects.getTenBh().toLowerCase().contains(newText)){dsBaiHatTimKiem.add(objec
    }
             return super.instantiateItem(container, position);
         }
+
 
     }
 
