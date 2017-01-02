@@ -33,7 +33,7 @@ public class YeuThich extends Fragment{
         View view =  inflater.inflate(R.layout.yeuthich, container, false);
         ListView lvyeuthich = (ListView) view.findViewById(R.id.lvyeuthich);
         MainActivity main1 = (MainActivity) getActivity();
-
+        main1.YtAdapter = new BaiHatAdapter(getActivity(),R.layout.items,main1.dsYeuthich);
         main1.YtAdapter.notifyDataSetChanged();
         lvyeuthich.setAdapter(main1.YtAdapter);
         return view;

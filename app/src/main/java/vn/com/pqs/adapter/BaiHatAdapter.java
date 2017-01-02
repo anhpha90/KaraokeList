@@ -34,6 +34,7 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
     //danh sách nguồn dữ liệu muốn hiển thị lên giao diện
     List<BaiHat> objects;
     MainActivity main2 = (MainActivity) getContext();
+
     public BaiHatAdapter(Activity context, int resource, List<BaiHat> objects) {
         super(context, resource, objects);
         this.context = context;
@@ -56,7 +57,6 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
         txtCs.setText(baiHat.getTxtcs());
         txtLr.setText(baiHat.getTxtLr());
 
-
                imglike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,14 +71,11 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
         String mschon = baiHat.getTxtms().toString();
 
         if(baiHat.getThich()){
-
-
          updateThich(mschon,false);
          baiHat.setThich(false);
          baiHat.setImg(R.drawable.addfav);
-            this.objects.set(pos,baiHat);
-            notifyDataSetChanged();
-            main2.dsYeuthich.remove(baiHat);
+          main2.dsYeuthich.remove(baiHat);
+
 
         }else{
             updateThich(mschon,true);
@@ -87,7 +84,6 @@ public class BaiHatAdapter extends ArrayAdapter<BaiHat> {
             main2.dsYeuthich.add(baiHat);
 
         }
-
        main2.YtAdapter.notifyDataSetChanged();
        main2.DsAdapter.notifyDataSetChanged();
 

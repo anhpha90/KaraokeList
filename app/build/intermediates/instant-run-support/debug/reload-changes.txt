@@ -1,0 +1,2 @@
+CHANGED,C:\Users\long\Downloads\SimpleKaraokeList\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\vn\com\pqs\adapter\BaiHatAdapter$override.class
+CHANGED,C:\Users\long\Downloads\SimpleKaraokeList\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class
